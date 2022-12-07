@@ -1,3 +1,4 @@
+import os.path
 from os import mkdir
 
 import keras.optimizers
@@ -10,8 +11,10 @@ from dataset import dataset
 
 
 def main():
-    mkdir(Config.OUTPUT_DIR)
-    mkdir(Config.SAVED_MODEL_DIR)
+    if not os.path.isdir(Config.OUTPUT_DIR):
+        mkdir(Config.OUTPUT_DIR)
+    if not os.path.isdir(Config.SAVED_MODEL_DIR):
+        mkdir(Config.SAVED_MODEL_DIR)
 
     train_data = dataset(train=True)
     test_data = dataset(train=False)
